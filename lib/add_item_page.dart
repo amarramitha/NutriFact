@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart'; 
-import 'dart:io'; 
+import 'package:image_picker/image_picker.dart';
 
 class AddItemPage extends StatefulWidget {
   final String categoryTitle;
@@ -16,8 +15,7 @@ class _AddItemPageState extends State<AddItemPage> {
   final TextEditingController _descriptionController = TextEditingController();
   String _imagePath = '';
 
-  final ImagePicker _picker =
-      ImagePicker(); 
+  final ImagePicker _picker = ImagePicker();
 
   @override
   void dispose() {
@@ -30,7 +28,7 @@ class _AddItemPageState extends State<AddItemPage> {
     final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       setState(() {
-        _imagePath = pickedFile.path; 
+        _imagePath = pickedFile.path;
       });
     }
   }
@@ -79,20 +77,18 @@ class _AddItemPageState extends State<AddItemPage> {
               Row(
                 children: [
                   ElevatedButton(
-                    onPressed: _pickImage, 
+                    onPressed: _pickImage,
                     child: const Text('Pilih Gambar'),
                   ),
                   SizedBox(width: 16),
-                  if (_imagePath.isNotEmpty) 
+                  if (_imagePath.isNotEmpty)
                     Text('Gambar dipilih: ${_imagePath.split('/').last}'),
                 ],
               ),
               SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () {
-                 
-                  Navigator.pop(
-                      context); 
+                  Navigator.pop(context);
                 },
                 child: const Text('Simpan'),
               ),
