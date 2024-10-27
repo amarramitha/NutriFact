@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
     {
       'image': 'images/seafood.jpg',
       'title': 'Seafood',
-      'description': 'Rich in protein',
+      'description': 'High in omega-3 fatty acids.',
       'color': const Color.fromARGB(255, 255, 237, 198),
     },
   ];
