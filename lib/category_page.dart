@@ -208,10 +208,15 @@ class CategoryPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Expanded(
-                      child: Image.asset(
-                        images[index],
-                        fit: BoxFit.cover,
-                        width: double.infinity,
+                      child: ClipRRect(
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(8.0)),
+                        child: Image.asset(
+                          images[index],
+                          fit: BoxFit
+                              .cover, // Ubah ke BoxFit.cover agar gambar memenuhi area
+                          width: double.infinity,
+                        ),
                       ),
                     ),
                     Padding(
