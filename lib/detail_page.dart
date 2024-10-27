@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class DetailPage extends StatelessWidget {
+class DetailPage extends StatefulWidget {
   final String itemName;
   final String itemImage;
   final String itemDescription;
@@ -13,11 +13,16 @@ class DetailPage extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  _DetailPageState createState() => _DetailPageState();
+}
+
+class _DetailPageState extends State<DetailPage> {
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          itemName,
+          widget.itemName,
           style: const TextStyle(
             fontFamily: 'Cormorant',
             fontSize: 28,
@@ -58,7 +63,7 @@ class DetailPage extends StatelessWidget {
                       ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: Image.asset(
-                          itemImage,
+                          widget.itemImage,
                           width: MediaQuery.of(context).size.width < 600
                               ? 120
                               : 150,
@@ -70,7 +75,7 @@ class DetailPage extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       Text(
-                        itemName,
+                        widget.itemName,
                         style: const TextStyle(
                           fontSize: 22,
                           fontWeight: FontWeight.bold,
@@ -95,7 +100,7 @@ class DetailPage extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: SingleChildScrollView(
                     child: Text(
-                      itemDescription,
+                      widget.itemDescription,
                       style: const TextStyle(
                         fontSize: 18,
                         fontFamily: 'Cormorant',

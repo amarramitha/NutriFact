@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'detail_page.dart'; // Import the DetailPage class
+import 'add_item_page.dart';
 
 class CategoryPage extends StatelessWidget {
   final String categoryTitle;
@@ -153,6 +154,20 @@ class CategoryPage extends StatelessWidget {
           ),
         ),
         backgroundColor: const Color.fromARGB(255, 186, 230, 144),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.add),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      AddItemPage(categoryTitle: categoryTitle),
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: Container(
         decoration: BoxDecoration(
