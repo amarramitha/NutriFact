@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'detail_page.dart'; // Import the DetailPage class
+import 'detail_page.dart';
 import 'add_item_page.dart';
 
 class CategoryPage extends StatelessWidget {
@@ -180,63 +180,67 @@ class CategoryPage extends StatelessWidget {
             end: Alignment.bottomRight,
           ),
         ),
-        child: GridView.builder(
-          padding: const EdgeInsets.all(8.0),
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            crossAxisSpacing: 8.0,
-            mainAxisSpacing: 8.0,
-            childAspectRatio: 0.75,
-          ),
-          itemCount: items.length,
-          itemBuilder: (context, index) {
-            return Card(
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DetailPage(
-                        itemName: items[index],
-                        itemImage: images[index],
-                        itemDescription: descriptions[index],
+        child: Column(
+          children: [
+            // Using Expanded to fill available space
+            Expanded(
+              child: ListView.builder(
+                itemCount: items.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    elevation: 4.0,
+                    margin: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => DetailPage(
+                              itemName: items[index],
+                              itemImage: images[index],
+                              itemDescription: descriptions[index],
+                            ),
+                          ),
+                        );
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.vertical(
+                                top: Radius.circular(8.0)),
+                            child: Image.asset(
+                              images[index],
+                              fit: BoxFit.cover,
+                              width: double.infinity,
+                              height: 200, // Keep the height consistent
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              items[index],
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize:
+                                    MediaQuery.of(context).size.width > 600
+                                        ? 20
+                                        : 16,
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Cormorant',
+                              ),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   );
                 },
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Expanded(
-                      child: ClipRRect(
-                        borderRadius:
-                            BorderRadius.vertical(top: Radius.circular(8.0)),
-                        child: Image.asset(
-                          images[index],
-                          fit: BoxFit
-                              .cover, // Ubah ke BoxFit.cover agar gambar memenuhi area
-                          width: double.infinity,
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        items[index],
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize:
-                              MediaQuery.of(context).size.width > 600 ? 20 : 16,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Cormorant',
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
               ),
-            );
-          },
+            ),
+          ],
         ),
       ),
     );

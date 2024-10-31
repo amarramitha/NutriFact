@@ -53,7 +53,7 @@ class _AddItemPageState extends State<AddItemPage> {
             end: Alignment.bottomRight,
           ),
         ),
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -65,32 +65,44 @@ class _AddItemPageState extends State<AddItemPage> {
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               TextField(
                 controller: _descriptionController,
+                maxLines: 3,
                 decoration: InputDecoration(
                   labelText: 'Deskripsi',
                   border: OutlineInputBorder(),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  ElevatedButton(
-                    onPressed: _pickImage,
-                    child: const Text('Pilih Gambar'),
+                  Expanded(
+                    child: ElevatedButton(
+                      onPressed: _pickImage,
+                      child: const Text('Pilih Gambar'),
+                    ),
                   ),
-                  SizedBox(width: 16),
+                  const SizedBox(width: 16),
                   if (_imagePath.isNotEmpty)
-                    Text('Gambar dipilih: ${_imagePath.split('/').last}'),
+                    Flexible(
+                      child: Text(
+                        'Gambar dipilih: ${_imagePath.split('/').last}',
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
+                      ),
+                    ),
                 ],
               ),
-              SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                child: const Text('Simpan'),
+              const SizedBox(height: 16),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('Simpan'),
+                ),
               ),
             ],
           ),
